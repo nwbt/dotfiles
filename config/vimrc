@@ -1,0 +1,61 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'tpope/vim-fugitive', {'rtp': 'vim-fugitive/plugin/'}
+Plugin 'scrooloose/nerdtree'
+Plugin 'saltstack/salt-vim'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'elzr/vim-json'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this 
+
+"------------------------------------------------
+" Powerline setup
+set laststatus=2
+set term=xterm-256color
+"------------------------------------------------
+map <C-n> :NERDTreeToggle<CR>
+let NERDTreeShowHidden=1
+"------------------------------------------------
+"
+" <leader> is defined as \
+" Use <leader> l to toggle display of whitespace
+nmap <leader>l :set list!<CR>
+" And set some nice chars to do it with
+set listchars=tab:»\ ,eol:¬
+
+" automatically change window's cwd to file's dir
+set autochdir
+
+" backspace
+set backspace=indent,eol,start
+
+set tabstop=2
+set shiftwidth=2
+" uncomment line below to uses spaces instead of tabs
+" set expandtab
+set nu
+syntax on

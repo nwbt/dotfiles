@@ -1,0 +1,99 @@
+#!/bin/bash
+
+# setting up the terminal prompt
+BOLD="\[\033[1m\]"
+OFF="\[\033[m\]"
+GREEN="\[\e[0;32m\]"
+BLUE="\[\e[34m\]"
+RED="\[\e[1;31m\]"
+
+HOST="\h"
+USER="\u"
+DIR="\w"
+FOLDER="\W"
+NEWLINE="\n"
+DATE="\d"
+TIME="\t"
+
+export PS1="${USER}${GREEN}${BOLD}@${OFF}${HOST}:${FOLDER} ${RED}$ ${OFF}"
+
+# ensuring history is long and searchable
+HISTSIZE=49999
+HISTFILESIZE=49999
+
+
+# got aliases???
+if [ -f ~/.aliases ]; then
+	source ~/.aliases
+fi
+
+# got secrets??? everybody's got secrets?!?
+if [ -f ~/.secrets ]; then
+	source ~/.secrets 
+fi
+
+
+# adding android platform tools, such as 'adb' to PATH
+if [ -d ~/development-sdks/android-sdk/platform-tools ]; then
+	export PATH="$HOME/development-sdks/android-sdk/platform-tools:$PATH"
+fi
+
+export PATH="~/bin:$PATH"
+
+
+# ensuring ls & tree show things in full fotochrome
+if [ -f ~/.lscolors ]; then
+  source ~/.lscolors
+fi
+
+
+# creating GOPATH for GOLANG usage
+export GOPATH=$HOME/workspace/golang/gopath
+
+
+# somethings become more useful when there is an associate bash completion script 
+BREWCOMPLETION="/usr/local/etc/bash_completion.d"
+preCompleteList="tmux brew git-completion.bash mosh npm"
+for preComplete in $preCompleteList; do
+	completeString="$BREWCOMPLETION/$preComplete"
+	if [ -a $completeString ]; then
+		source $completeString
+	fi
+done
+
+
+# brew installs some awesome scripts and to be able to use these scripts via
+# their native name ensures they are used as replacements for the tools apple
+# provides, such as find and sed to name a couple.
+DABIN="libexec/gnubin"
+DAMAN="libexec/gnuman"
+
+COREUTILS="$(brew --prefix coreutils)"
+FINDUTILS="$(brew --prefix findutils)"
+GNUSED="$(brew --prefix gnu-sed)"
+GNUTAR="$(brew --prefix gnu-tar)"
+
+prePathList="$COREUTILS $FINDUTILS $GNUSED $GNUTAR"
+
+localPath=()
+for prePath in $prePathList; do
+	localPath+="$prePath/$DABIN:"
+done
+export PATH="$localPath$PATH"
+
+localManPath=()
+for preManPath in $prePathList; do
+	localManPath+="$preManPath/$DAMAN:"
+done
+export MANPATH="$localManPath$MANPATH"
+
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f ~/development-sdks/google-cloud-sdk/path.bash.inc ]; then
+  source ~/development-sdks/google-cloud-sdk/path.bash.inc
+fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f ~/development-sdks/google-cloud-sdk/completion.bash.inc ]; then
+  source ~/development-sdks/google-cloud-sdk/completion.bash.inc
+fi
