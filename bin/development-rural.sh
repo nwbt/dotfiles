@@ -8,7 +8,7 @@ else
 	WORKDIR=$1
 fi
 
-SESSION=development
+SESSION=development-rural
 
 tmux has-session -t $SESSION
 
