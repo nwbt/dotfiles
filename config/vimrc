@@ -16,6 +16,9 @@ Plugin 'saltstack/salt-vim'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'elzr/vim-json'
+Plugin 'aperezdc/vim-template'
+Plugin 'davidhalter/jedi-vim'
+" Plugin 'Valloric/YouCompleteMe'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -47,8 +50,15 @@ nmap <leader>l :set list!<CR>
 " And set some nice chars to do it with
 set listchars=tab:»\ ,eol:¬
 
+" keymap line numbers toggle
+nmap <F2> :set invnumber<CR>
+
 " automatically change window's cwd to file's dir
 set autochdir
+
+let g:vim_markdown_folding_disabled = 1
+let g:vim_json_syntax_conceal = 0
+let g:ycm_python_binary_path = 'python'
 
 " backspace
 set backspace=indent,eol,start

@@ -1,3 +1,7 @@
 secrets
 *.orig
+*.bak
+*.backup
+*.swp
 gitconfig
+vim/
