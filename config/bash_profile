@@ -17,6 +17,15 @@ TIME="\t"
 
 export PS1="${USER}${GREEN}${BOLD}@${OFF}${HOST}:${FOLDER} ${RED}$ ${OFF}"
 
+# nvm stuff
+if [ -d ~/.nvm ]; then
+	export NVM_DIR="$HOME/.nvm"
+fi
+
+if [ -f /usr/local/opt/nvm/nvm.sh ]; then
+  . "/usr/local/opt/nvm/nvm.sh"
+fi
+
 # ensuring history is long and searchable
 HISTSIZE=49999
 HISTFILESIZE=49999
