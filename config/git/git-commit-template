@@ -15,7 +15,7 @@
 # Github will automatically link issues of the form #1 or user/repo#1
 # Issues will be closed when the commit is merged to the default branch.
 
-#Issue #
+Issue #
 #Close #
 #
 # Write your commit messages in the imperative: "Fix bug" and not
