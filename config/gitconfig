@@ -1,0 +1,21 @@
+[commit]
+  template = ~/.git/git-commit-template
+[core]
+	editor = /usr/local/bin/vim
+[diff]
+	tool = vimdiff
+[merge]
+	tool = vimdiff
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[alias]
+	st = status
+	fp = fetch -p
+	ci = commit
+	co = checkout
+	pu = push
+	cl = clone
+	br = branch
