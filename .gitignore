@@ -4,5 +4,4 @@ nwbt.co.dns.record
 *.bak
 *.backup
 *.swp
-gitconfig
 vim/
