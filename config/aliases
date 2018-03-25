@@ -1,6 +1,22 @@
 #!/bin/bash
 
-alias ls='ls --color'
-alias la='ls -al --color'
-alias ll='ls -l --color'
-alias lh='ls -alh --color'
+# for macos only
+alias ls='gls --color'
+alias la='gls -al --color'
+alias ll='gls -l --color'
+alias lh='gls -alh --color'
+
+alias vi='/usr/local/bin/vim'
+alias dm='docker-machine'
+alias dc='docker-compose'
+
+alias kurl='/usr/local/opt/curl/bin/curl'
+
+alias brewd='brew update && brew upgrade'
+
+alias rnatives='. ~/bin/natives'
+
+alias tar='/usr/local/bin/gtar'
+alias btar='/usr/bin/tar'
+
+alias bfg='java -jar /Users/dan9226/app-repos/bfg-repo-cleaner/bfg/target/bfg-1.13.0-v1.13.0-2c1ec2f.jar'

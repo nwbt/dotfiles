@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+# For MacOS only 
+# brew installs some awesome scripts and to be able to use these scripts via
+# their native name ensures they are used as replacements for the tools apple
+# provides, such as find and sed to name a couple.
+DABIN="libexec/gnubin"
+DAMAN="libexec/gnuman"
+
+COREUTILS="$(brew --prefix coreutils)"
+FINDUTILS="$(brew --prefix findutils)"
+GNUSED="$(brew --prefix gnu-sed)"
+GNUTAR="$(brew --prefix gnu-tar)"
+
+prePathList="$COREUTILS $FINDUTILS $GNUSED $GNUTAR"
+
+localPath=()
+for prePath in $prePathList; do
+  localPath+="$prePath/$DABIN:"
+done
+export PATH="$localPath$PATH"
+
+localManPath=()
+for preManPath in $prePathList; do
+ localManPath+="$preManPath/$DAMAN:"
+done
+export MANPATH="$localManPath$MANPATH"

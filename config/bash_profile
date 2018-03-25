@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # setting up the terminal prompt
 BOLD="\[\033[1m\]"
@@ -15,94 +15,47 @@ NEWLINE="\n"
 DATE="\d"
 TIME="\t"
 
-export PS1="${USER}${GREEN}${BOLD}@${OFF}${HOST}:${FOLDER} ${RED}$ ${OFF}"
+export PS1="${NEWLINE}${GREEN}${BOLD}${USER}@${HOST}${OFF}:${BLUE}${BOLD}${DIR}${NEWLINE}${RED}$ ${OFF}"
 
-# nvm stuff
-if [ -d ~/.nvm ]; then
-	export NVM_DIR="$HOME/.nvm"
-fi
+# creating GOPATH for GOLANG usage
+export GOPATH=$HOME/wksp/golang
+export PATH=$PATH:$(go env GOPATH)/bin
 
-if [ -f /usr/local/opt/nvm/nvm.sh ]; then
-  . "/usr/local/opt/nvm/nvm.sh"
-fi
+# groovy
+export GROOVY_HOME=/usr/local/opt/groovy/libexec
+
+# add home bin to path
+export PATH="~/bin:$PATH"
 
 # ensuring history is long and searchable
 HISTSIZE=49999
 HISTFILESIZE=49999
 
+# bash completion - somethings become more useful when there is an associate bash completion script 
+[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 
 # got aliases???
-if [ -f ~/.aliases ]; then
-	source ~/.aliases
-fi
+[ -f ~/.aliases ] && . ~/.aliases
 
-# got secrets??? everybody's got secrets?!?
-if [ -f ~/.secrets ]; then
-	source ~/.secrets 
-fi
-
-
-# adding android platform tools, such as 'adb' to PATH
-if [ -d ~/development-sdks/android-sdk/platform-tools ]; then
-	export PATH="$HOME/development-sdks/android-sdk/platform-tools:$PATH"
-fi
-
-export PATH="~/bin:$PATH"
-
+# got secrets??? everybody's got secrets?!? 
+# change of heart ... don't source unless necessary
+# [ -f ~/.secrets ] && . ~/.secrets
 
 # ensuring ls & tree show things in full fotochrome
-if [ -f ~/.lscolors ]; then
-  source ~/.lscolors
+[ -f ~/.lscolors ] && . ~/.lscolors
+
+# aws cli scripts are located in this directory
+if [ -d ~/Library/Python/3.6/bin/ ]; then
+	export PATH="~/Library/Python/3.6/bin/:$PATH"
 fi
 
+# nvm stuff
+export NVM_DIR="$HOME/.nvm"
+NVM_SH="$NVM_DIR/nvm.sh"
+NVM_BASH="$NVM_DIR/bash_completion"
+[ -s "$NVM_SH" ] && . "$NVM_SH" # This loads nvm
+[ -s "$NVM_BASH" ] && . "$NVM_BASH"  # This loads nvm bash_completion
 
-# creating GOPATH for GOLANG usage
-export GOPATH=$HOME/workspace/golang/gopath
-
-
-# somethings become more useful when there is an associate bash completion script 
-BREWCOMPLETION="/usr/local/etc/bash_completion.d"
-preCompleteList="tmux brew git-completion.bash mosh npm"
-for preComplete in $preCompleteList; do
-	completeString="$BREWCOMPLETION/$preComplete"
-	if [ -a $completeString ]; then
-		source $completeString
-	fi
-done
-
-
-# brew installs some awesome scripts and to be able to use these scripts via
-# their native name ensures they are used as replacements for the tools apple
-# provides, such as find and sed to name a couple.
-DABIN="libexec/gnubin"
-DAMAN="libexec/gnuman"
-
-COREUTILS="$(brew --prefix coreutils)"
-FINDUTILS="$(brew --prefix findutils)"
-GNUSED="$(brew --prefix gnu-sed)"
-GNUTAR="$(brew --prefix gnu-tar)"
-
-prePathList="$COREUTILS $FINDUTILS $GNUSED $GNUTAR"
-
-localPath=()
-for prePath in $prePathList; do
-	localPath+="$prePath/$DABIN:"
-done
-export PATH="$localPath$PATH"
-
-localManPath=()
-for preManPath in $prePathList; do
-	localManPath+="$preManPath/$DAMAN:"
-done
-export MANPATH="$localManPath$MANPATH"
-
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f ~/development-sdks/google-cloud-sdk/path.bash.inc ]; then
-  source ~/development-sdks/google-cloud-sdk/path.bash.inc
-fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f ~/development-sdks/google-cloud-sdk/completion.bash.inc ]; then
-  source ~/development-sdks/google-cloud-sdk/completion.bash.inc
+if [ -d ~/android-sdk/platform-tools/ ]; then
+  export PATH="$PATH:~/android-sdk/platform-tools/"
 fi
