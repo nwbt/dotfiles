@@ -12,19 +12,29 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'tpope/vim-fugitive', {'rtp': 'vim-fugitive/plugin/'}
 Plugin 'scrooloose/nerdtree'
-Plugin 'saltstack/salt-vim'
+" Plugin 'saltstack/salt-vim'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'elzr/vim-json'
-Plugin 'aperezdc/vim-template'
+" Plugin 'aperezdc/vim-template'
 Plugin 'davidhalter/jedi-vim'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'vim-scripts/nginx.vim'
+Plugin 'vimwiki/vimwiki'
+Plugin 'hashivim/vim-hashicorp-tools'
 " Plugin 'Valloric/YouCompleteMe'
-
+Plugin 'martinda/Jenkinsfile-vim-syntax'
+Plugin 'fatih/vim-hclfmt'
+"Plugin 'b4b4r07/vim-hcl'
+'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
+"
+" :source %
+" :PluginInstall
 "
 " Brief help
 " :PluginList       - lists configured plugins
@@ -40,13 +50,13 @@ filetype plugin indent on    " required
 set laststatus=2
 set term=xterm-256color
 "------------------------------------------------
-map <C-n> :NERDTreeToggle<CR>
+nmap <F5> :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
 "------------------------------------------------
 "
 " <leader> is defined as \
 " Use <leader> l to toggle display of whitespace
-nmap <leader>l :set list!<CR>
+nmap <F3> :set list!<CR>
 " And set some nice chars to do it with
 set listchars=tab:»\ ,eol:¬
 
@@ -69,3 +79,16 @@ set shiftwidth=2
 " set expandtab
 set nu
 syntax on
+
+":VimwikiAll2HTML -- Convert all your wiki links to HTML
+"<Leader>ww -- Open default wiki index file.
+"<Leader>wt -- Open default wiki index file in a new tab.
+"<Leader>ws -- Select and open wiki index file.
+"<Leader>wd -- Delete wiki file you are in.
+"<Leader>wr -- Rename wiki file you are in.
+"<Enter> -- Follow/Create wiki link
+"<Shift-Enter> -- Split and follow/create wiki link
+"<Ctrl-Enter> -- Vertical split and follow/create wiki link
+"<Backspace> -- Go back to parent(previous) wiki link
+"<Tab> -- Find next wiki link
+"<Shift-Tab> -- Find previous wiki link
