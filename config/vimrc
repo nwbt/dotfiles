@@ -24,7 +24,9 @@ Plugin 'vimwiki/vimwiki'
 Plugin 'hashivim/vim-hashicorp-tools'
 " Plugin 'Valloric/YouCompleteMe'
 Plugin 'martinda/Jenkinsfile-vim-syntax'
-
+Plugin 'fatih/vim-hclfmt'
+"Plugin 'b4b4r07/vim-hcl'
+'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
