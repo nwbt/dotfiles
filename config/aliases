@@ -20,3 +20,7 @@ alias tar='/usr/local/bin/gtar'
 alias btar='/usr/bin/tar'
 
 alias bfg='java -jar $HOME/repos/bfg-repo-cleaner/bfg/target/bfg-1.13.1-SNAPSHOT-master-aeee9e3.jar'
+alias tf='terraform'
+
+alias k=kubectl
+alias kx=kubectx

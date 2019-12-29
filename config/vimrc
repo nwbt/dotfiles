@@ -7,6 +7,11 @@ call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
+" workaround for https://github.com/powerline/powerline/issues/1925
+if has('python3')
+  silent! python3 1
+endif
+
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
@@ -80,15 +85,10 @@ set shiftwidth=2
 set nu
 syntax on
 
-":VimwikiAll2HTML -- Convert all your wiki links to HTML
-"<Leader>ww -- Open default wiki index file.
-"<Leader>wt -- Open default wiki index file in a new tab.
-"<Leader>ws -- Select and open wiki index file.
-"<Leader>wd -- Delete wiki file you are in.
-"<Leader>wr -- Rename wiki file you are in.
-"<Enter> -- Follow/Create wiki link
-"<Shift-Enter> -- Split and follow/create wiki link
-"<Ctrl-Enter> -- Vertical split and follow/create wiki link
-"<Backspace> -- Go back to parent(previous) wiki link
-"<Tab> -- Find next wiki link
-"<Shift-Tab> -- Find previous wiki link
+colors pablo
+"-------------------------------------------------
+" VimHcl Config
+let g:hcl_fmt_autosave = 1
+let g:tf_fmt_autosave = 1
+let g:nomad_fmt_autosave = 1
+"-------------------------------------------------

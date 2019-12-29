@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+[ -f ~/.bashrc ] && . ~/.bashrc
+
 # setting up the terminal prompt
 BOLD="\[\033[1m\]"
 OFF="\[\033[m\]"
@@ -19,7 +21,7 @@ export PS1="${NEWLINE}${GREEN}${BOLD}${USER}@${HOST}${OFF}:${BLUE}${BOLD}${DIR}$
 
 # creating GOPATH for GOLANG usage
 export GOPATH=$HOME/wksp/golang
-export PATH=$PATH:$(go env GOPATH)/bin
+export PATH=$(go env GOPATH)/bin:$PATH
 
 # groovy
 export GROOVY_HOME=/usr/local/opt/groovy/libexec
@@ -38,8 +40,7 @@ HISTFILESIZE=49999
 [ -f ~/.aliases ] && . ~/.aliases
 
 # got secrets??? everybody's got secrets?!? 
-# change of heart ... don't source unless necessary
-# [ -f ~/.secrets ] && . ~/.secrets
+[ -f ~/.secrets ] && . ~/.secrets
 
 # ensuring ls & tree show things in full fotochrome
 [ -f ~/.lscolors ] && . ~/.lscolors
@@ -59,3 +60,7 @@ NVM_BASH="$NVM_DIR/bash_completion"
 if [ -d ~/android-sdk/platform-tools/ ]; then
   export PATH="$PATH:~/android-sdk/platform-tools/"
 fi
+
+# gcloud
+[ -s "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc" ] && . /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc
+[ -s "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc" ] && . /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc
